@@ -1,0 +1,15 @@
+IDENTIDAD RECUPERADA DE TARJETAS Y BANNERS — LOS ANDES DE AMÉRICA
+
+Logo actual: logo-LA-sin-fondo.png (PNG transparente recuperado de las piezas originales).
+Favicon: favicon-los-andes.png (reducido desde dicho emblema).
+Hero: reutiliza logo-LA-sin-fondo.png sobre fondo azul petróleo (CSS).
+Galería (WebP optimizados de fuentes originales):
+- galeria-01-emblema.webp: imagen embebida en Tarjeta_Los_Andes_de_America.pdf.
+- galeria-02-banner-blanco.webp: los_andes_blanco_opcion_4_1200x600.png.
+- galeria-03-banner-contacto.webp: los_andes_blanco_opcion_5_1200x600.png.
+- galeria-04-banner-marino.webp: banner_B_marino_blanco_amarillo_1281x286.png.
+
+Estas son piezas gráficas de comunicación; NO fotografías de infraestructura.
+Las fuentes PNG originales recuperadas están en ORIGINALES_TARJETAS/ fuera de la raíz pública (no desplegadas por los scripts).
+Las fotografías originales usadas en otros diseños de tarjetas no estuvieron disponibles como archivos exportables.
+Para usar fotografías reales, reemplaza las rutas de CONFIG.gallery / CONFIG.heroImage y modifica los títulos/alt.

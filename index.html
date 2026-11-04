@@ -30,9 +30,10 @@
         mapQuery: 'ZOFRATACNA Mz B Lotes 7 y 8 Tacna Peru',
         phones: ['973 699 262', '952 000 800', '908 846 125'],
         email: 'almacenlosandesda@gmail.com',
-        whatsapp: '', // CONFIRMAR: número con WhatsApp, solo dígitos con código de país: 519XXXXXXXX
+        whatsapp: '', // CONFIRMAR: número con WhatsApp; puede escribirse local o internacionalmente
+        whatsappCountryCode: '51',
         hours: '', // CONFIRMAR: horarios de atención
-        website: '', // CONFIRMAR: URL definitiva con https://
+        website: 'https://losandesdeamerica.github.io/',
         social: { facebook: '', instagram: '', linkedin: '', tiktok: '' }
       },
       identity: {
@@ -245,6 +246,7 @@
     [data-theme="dark"] .error{color:#ff9696}
     .form-actions{display:flex;flex-direction:column;align-items:stretch;gap:11px;margin-top:20px}
     .form-actions .btn{width:100%}.form-hint{font-size:10px;color:var(--muted);line-height:1.7;margin:9px 0 0}
+    .form-actions .btn[hidden]{display:none}
     .status{font-size:12px;min-height:20px;color:var(--muted);margin-top:8px}
     .socials{display:flex;gap:10px;margin-top:22px}.socials a{font-size:11px;font-weight:800;text-decoration:underline;text-underline-offset:3px}
     /* ============================================================
@@ -431,7 +433,7 @@
       <div class="reveal"><span class="eyebrow">05 · Hablemos</span><h2 id="contact-title">Hagamos que <span class="serif">suceda.</span></h2><p class="lead">Cuéntanos qué necesitas y consulta nuestros servicios de almacenaje y logística.</p>
         <div class="contact-details">
           <div class="detail"><span>Teléfonos</span><div id="phoneLinks" class="detail-phones"></div></div>
-          <div class="detail"><span>Correo electrónico</span><div class="copy-line"><a id="emailLink" href="mailto:almacenlosandesda@gmail.com">almacenlosandesda@gmail.com</a><button type="button" class="copy-btn" data-copy="email" aria-label="Copiar correo"><svg class="icon"><use href="#i-copy"/></svg> Copiar</button></div></div>
+          <div class="detail"><span>Correo electrónico</span><div class="copy-line"><a id="emailLink" href="#contacto"></a><button type="button" class="copy-btn" data-copy="email" aria-label="Copiar correo"><svg class="icon"><use href="#i-copy"/></svg> Copiar</button></div></div>
           <div class="detail"><span>Dirección</span><div class="copy-line"><span id="addressText" class="value">ZOFRATACNA Mz. B, Lotes 7 y 8, Tacna, Perú</span><button type="button" class="copy-btn" data-copy="address" aria-label="Copiar dirección"><svg class="icon"><use href="#i-copy"/></svg> Copiar</button></div></div>
           <div class="detail" id="hoursWrap" hidden><span>Horario</span><span class="value" id="hoursText"></span></div>
         </div>
@@ -444,10 +446,10 @@
             <div class="field"><label for="name">Nombre completo *</label><input id="name" name="name" autocomplete="name" maxlength="90" required placeholder="Tu nombre" aria-describedby="err-name"><p class="error" id="err-name" aria-live="polite"></p></div>
             <div class="field"><label for="phone">Teléfono *</label><input id="phone" name="phone" autocomplete="tel" inputmode="tel" maxlength="22" required placeholder="+51 999 999 999" aria-describedby="err-phone"><p class="error" id="err-phone" aria-live="polite"></p></div>
             <div class="field full"><label for="email">Correo electrónico *</label><input id="email" name="email" type="email" autocomplete="email" maxlength="120" required placeholder="nombre@empresa.com" aria-describedby="err-email"><p class="error" id="err-email" aria-live="polite"></p></div>
-            <div class="field full"><label for="message">Mensaje *</label><textarea id="message" name="message" minlength="12" maxlength="1500" required placeholder="Cuéntanos sobre la operación o servicio que buscas..." aria-describedby="err-message"></textarea><p class="error" id="err-message" aria-live="polite"></p></div>
+            <div class="field full"><label for="message">Mensaje *</label><textarea id="message" name="message" minlength="10" maxlength="1500" required placeholder="Cuéntanos sobre la operación o servicio que buscas..." aria-describedby="err-message"></textarea><p class="error" id="err-message" aria-live="polite"></p></div>
           </div>
-          <div class="form-actions"><button type="submit" id="submitButton" class="btn btn-primary">Preparar consulta <svg class="icon"><use href="#i-arrow-up-right"/></svg></button><button type="button" id="alternateButton" class="btn btn-outline">Enviar por correo <svg class="icon"><use href="#i-arrow-right"/></svg></button></div>
-          <p class="form-hint" id="formHint">No se envían datos a un servidor. Podrás revisar el mensaje antes de enviarlo.</p><div class="status" role="status" aria-live="polite" id="formStatus"></div>
+          <div class="form-actions"><button type="button" id="whatsappButton" class="btn btn-primary" hidden>Enviar por WhatsApp <svg class="icon"><use href="#i-whatsapp"/></svg></button><button type="button" id="emailButton" class="btn btn-outline">Enviar por correo <svg class="icon"><use href="#i-arrow-right"/></svg></button><button type="button" id="copyMessageButton" class="btn btn-outline">Copiar mensaje <svg class="icon"><use href="#i-copy"/></svg></button></div>
+          <p class="form-hint" id="formHint">No se envían datos a un servidor. Elige un canal, revisa el mensaje y confirma el envío en la aplicación que se abre.</p><div class="status" role="status" aria-live="polite" id="formStatus"></div>
         </form>
       </div>
     </div></section>
@@ -457,7 +459,7 @@
   <footer class="footer"><div class="container"><div class="footer-main">
     <div><a class="brand" href="#inicio" aria-label="Los Andes de América, volver al inicio"><span class="brand-icon" data-logo><img src="assets/logo-LA-sin-fondo.png" alt=""><svg class="icon" style="display:none"><use href="#i-globe"/></svg></span><span class="brand-text"><strong>LOS ANDES DE AMÉRICA</strong><small>Depósito Franco Público</small></span></a><p>Conectando mercados desde ZOFRATACNA al mundo.</p><p>RUC 20122116604 · Tacna, Perú</p></div>
     <div><h3>Explorar</h3><div class="footer-list"><a href="#nosotros">Nosotros</a><a href="#servicios">Servicios</a><a href="#diferenciales">Diferenciales</a><a href="#galeria">Galería</a></div></div>
-    <div><h3>Contacto</h3><div class="footer-list"><a href="#contacto">Formulario de contacto</a><a id="footerPhone" href="tel:+51952000800">952 000 800</a><a id="footerEmail" href="mailto:almacenlosandesda@gmail.com">Correo electrónico</a><a id="footerMaps" href="#contacto">Nuestra ubicación</a></div></div>
+    <div><h3>Contacto</h3><div class="footer-list"><a href="#contacto">Formulario de contacto</a><a id="footerPhone" href="#contacto"></a><a id="footerEmail" href="#contacto">Correo electrónico</a><a id="footerMaps" href="#contacto">Nuestra ubicación</a></div></div>
   </div><div class="footer-bottom"><span>© <span id="year"></span> Los Andes de América E.I.R.L. · Derechos reservados.</span><span>Depósito Franco Público · ZOFRATACNA</span></div></div></footer>
 
   <div class="floating-actions"><button class="top" id="backTop" aria-label="Volver al inicio" title="Volver arriba"><svg class="icon"><use href="#i-up"/></svg></button><a class="whatsapp" id="floatWhatsApp" href="#" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp" title="WhatsApp" hidden><svg class="icon"><use href="#i-whatsapp"/></svg></a></div>
@@ -473,6 +475,13 @@
     const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
     const icon = name => `<svg class="icon" aria-hidden="true"><use href="#i-${name}"></use></svg>`;
     const cleanPhone = phone => String(phone).replace(/\D/g, '');
+    const normalizeWhatsApp = (value, countryCode) => {
+      let digits = cleanPhone(value);
+      const country = cleanPhone(countryCode);
+      if (digits.startsWith('00')) digits = digits.slice(2);
+      if (country && digits.length === 9 && digits.startsWith('9')) digits = country + digits;
+      return digits;
+    };
     const telHref = phone => {
       const digits = cleanPhone(phone);
       return 'tel:+' + (digits.length === 9 ? '51' + digits : digits);
@@ -482,8 +491,8 @@
     document.documentElement.style.setProperty('--gold', CONFIG.identity.gold);
     const safeExternal = value => /^https:\/\/[^\s]+$/i.test(value) ? value : '';
     const mapUrl = 'https://www.google.com/maps?q=' + encodeURIComponent(CONFIG.company.mapQuery || CONFIG.company.address);
-    const whatsappNumber = cleanPhone(CONFIG.company.whatsapp);
-    const validWhatsApp = /^\d{10,15}$/.test(whatsappNumber);
+    const whatsappNumber = normalizeWhatsApp(CONFIG.company.whatsapp, CONFIG.company.whatsappCountryCode);
+    const validWhatsApp = /^\d{10,15}$/.test(whatsappNumber) && whatsappNumber.startsWith(cleanPhone(CONFIG.company.whatsappCountryCode));
     let toastTimer;
     function toast(message) {
       const el = $('#toast'); el.textContent = message; el.classList.add('show');
@@ -600,7 +609,11 @@
       const link = document.createElement('a');link.href = url;link.textContent = network[0].toUpperCase() + network.slice(1);link.target='_blank';link.rel='noopener noreferrer';socials.append(link);
     });
     if (socials.childElementCount) socials.hidden = false;
-    if (validWhatsApp) { $('#floatWhatsApp').hidden = false;$('#floatWhatsApp').href = 'https://wa.me/' + whatsappNumber; }
+    if (validWhatsApp) {
+      $('#floatWhatsApp').hidden = false;
+      $('#floatWhatsApp').href = 'https://wa.me/' + whatsappNumber;
+      $('#whatsappButton').hidden = false;
+    }
     // Mantener realmente ocultos los enlaces sin datos confirmados (CSS display no anula [hidden]).
     const hiddenStyle = document.createElement('style');hiddenStyle.textContent = '[hidden]{display:none!important}';document.head.append(hiddenStyle);
 
@@ -610,10 +623,10 @@
     const form = $('#contactForm');
     const fields = ['name','phone','email','message'];
     const rules = {
-      name: value => value.trim().length >= 3 ? '' : 'Escribe al menos 3 caracteres.',
+      name: value => value.trim().length >= 2 ? '' : 'Escribe al menos 2 caracteres.',
       phone: value => /^\+?[\d\s().-]+$/.test(value.trim()) && cleanPhone(value).length >= 9 && cleanPhone(value).length <= 15 ? '' : 'Ingresa un teléfono válido de 9 a 15 dígitos.',
       email: value => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value.trim()) ? '' : 'Ingresa un correo electrónico válido.',
-      message: value => value.trim().length >= 12 ? '' : 'Escribe al menos 12 caracteres.'
+      message: value => value.trim().length >= 10 ? '' : 'Escribe al menos 10 caracteres.'
     };
     const touched = new Set();
     function validate(name, show = true) {
@@ -630,29 +643,26 @@
       return `Consulta desde la web · ${CONFIG.company.shortName}\n\nNombre: ${$('#name').value.trim()}\nTeléfono: ${$('#phone').value.trim()}\nCorreo: ${$('#email').value.trim()}\n\nMensaje:\n${$('#message').value.trim()}`;
     }
     function mailtoUrl() {
-      return 'mailto:' + CONFIG.company.email + '?subject=' + encodeURIComponent('Consulta comercial - ' + $('#name').value.trim()) + '&body=' + encodeURIComponent(preparedMessage());
+      return 'mailto:' + CONFIG.company.email + '?subject=' + encodeURIComponent('Consulta comercial - Los Andes de América') + '&body=' + encodeURIComponent(preparedMessage());
     }
     function send(via) {
       fields.forEach(name => { touched.add(name);validate(name); });
       const firstInvalid = fields.find(name => !validate(name));
       if (firstInvalid) { $('#' + firstInvalid).focus();$('#formStatus').textContent = 'Revisa los campos marcados.';return; }
-      const mode = (via === 'whatsapp' && validWhatsApp) ? 'whatsapp' : 'email';
-      const url = mode === 'whatsapp' ? 'https://wa.me/' + whatsappNumber + '?text=' + encodeURIComponent(preparedMessage()) : mailtoUrl();
-      $('#formStatus').textContent = 'Se preparó tu mensaje. Confirma el envío en la aplicación que se abre.';
-      // No se afirma que el mensaje fue enviado: no existe backend.
-      if (mode === 'email') window.location.href = url;
+      if (via === 'whatsapp' && !validWhatsApp) {
+        $('#formStatus').textContent = 'El canal de WhatsApp aún no está disponible. Usa el correo o copia el mensaje.';
+        return;
+      }
+      const url = via === 'whatsapp' ? 'https://wa.me/' + whatsappNumber + '?text=' + encodeURIComponent(preparedMessage()) : mailtoUrl();
+      $('#formStatus').textContent = via === 'whatsapp'
+        ? 'Se abrió WhatsApp. Revisa y confirma el envío allí.'
+        : 'Se abrió tu cliente de correo. Revisa y confirma el envío allí.';
+      if (via === 'email') window.location.href = url;
       else { const link = document.createElement('a');link.href = url;link.target = '_blank';link.rel = 'noopener noreferrer';document.body.append(link);link.click();link.remove(); }
     }
-    form.addEventListener('submit', event => { event.preventDefault(); send(validWhatsApp ? 'whatsapp' : 'email'); });
-    $('#alternateButton').addEventListener('click', () => send(validWhatsApp ? 'email' : 'whatsapp'));
-    if (validWhatsApp) {
-      $('#submitButton').innerHTML = 'Continuar por WhatsApp ' + icon('arrow-up-right');
-      $('#alternateButton').innerHTML = 'Usar correo electrónico ' + icon('arrow-right');
-    } else {
-      $('#submitButton').innerHTML = 'Preparar correo ' + icon('arrow-up-right');
-      $('#alternateButton').hidden = true; // No hay WhatsApp verificado: evitar botón inútil.
-      $('#formHint').textContent = 'El correo se abre con el mensaje preparado. WhatsApp se habilita al confirmar su número en CONFIG.';
-    }
+    form.addEventListener('submit', event => event.preventDefault());
+    $('#whatsappButton').addEventListener('click', () => send('whatsapp'));
+    $('#emailButton').addEventListener('click', () => send('email'));
     /* Copiar con fallback para file:// y contextos sin HTTPS. */
     async function copyValue(value) {
       try { if (navigator.clipboard?.writeText) { await navigator.clipboard.writeText(value);toast('Copiado al portapapeles.');return; } } catch (_) {}
@@ -661,6 +671,14 @@
       if (copied) toast('Copiado al portapapeles.'); else toast('Selecciona y copia el texto manualmente.');
     }
     $$('[data-copy]').forEach(button => button.addEventListener('click',() => copyValue(button.dataset.copy === 'email' ? CONFIG.company.email : CONFIG.company.address)));
+    $('#copyMessageButton').addEventListener('click', () => {
+      fields.forEach(name => { touched.add(name);validate(name); });
+      const firstInvalid = fields.find(name => !validate(name));
+      if (firstInvalid) { $('#' + firstInvalid).focus();$('#formStatus').textContent = 'Revisa los campos marcados antes de copiar el mensaje.';return; }
+      $('#formStatus').textContent = 'Mensaje copiado. Pégalo en WhatsApp, correo u otro canal.';
+      copyValue(preparedMessage());
+    });
+    if (!validWhatsApp) $('#formHint').textContent = 'WhatsApp aún no está disponible porque su número no ha sido confirmado. Usa el correo o copia el mensaje para enviarlo manualmente.';
 
     /* ============================================================
        11 · Visor de imágenes con navegación y teclado
